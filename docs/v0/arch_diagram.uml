@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+actor User
+rectangle "Frontend (Web/Mobile)" as FE
+rectangle "API Gateway" as API
+rectangle "Auth Service" as Auth
+rectangle "Video Service" as Video
+rectangle "Community Service" as Community
+rectangle "Subscription Service" as Sub
+rectangle "Moderation Service" as Mod
+rectangle "Search Service" as Search
+rectangle "Analytics Service" as Analytics
+rectangle "Postgres DB" as DB
+' rectangle "Redis Cache" as Cache
+rectangle "Kafka/RabbitMQ" as MQ
+rectangle "Cloudflare R2" as R2
+rectangle "FFmpeg Workers" as Workers
+rectangle "CDN (Cloudflare)" as CDN
+
+User --> FE
+FE --> API
+API --> Auth
+API --> Video
+API --> Community
+API --> Sub
+API --> Mod
+API --> Search
+API --> Analytics
+Video --> R2
+Video --> MQ
+Workers --> R2
+Workers --> DB
+Video --> DB
+Search --> DB
+Community --> DB
+Sub --> DB
+Mod --> DB
+Analytics --> MQ
+Analytics --> DB
+FE --> CDN
+@enduml
